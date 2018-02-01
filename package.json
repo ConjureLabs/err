@@ -1,0 +1,21 @@
+{
+  "name": "err",
+  "version": "1.0.0",
+  "description": "Extending the native error constructor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConjureLabs/err.git"
+  },
+  "keywords": [
+    "Error"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ConjureLabs/err/issues"
+  },
+  "homepage": "https://github.com/ConjureLabs/err#readme"
+}
