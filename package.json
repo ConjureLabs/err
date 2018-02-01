@@ -4,7 +4,8 @@
   "description": "Extending the native error constructor",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "bash ./bash/lint.sh",
+    "test": "bash ./bash/test.sh"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,12 @@
   "keywords": [
     "Error"
   ],
+  "devDependencies": {
+    "ava": "0.23.0",
+    "babel-eslint": "8.0.1",
+    "eslint": "4.10.0",
+    "jscs": "3.0.7"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ConjureLabs/err/issues"
