@@ -58,3 +58,11 @@ try {
   throw permErr;
 }
 ```
+
+### Tests
+
+```sh
+npm test
+npm run lint
+```
+
