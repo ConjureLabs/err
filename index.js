@@ -7,11 +7,13 @@ class ConjureError extends Error {
     const newError = new Constructor(err.message || err.toString());
 
     for (let i = 0; i < nativeErrorKeys.length; i++) {
-      if (err[ nativeErrorKeys[i] ] === undefined) {
+      const key = nativeErrorKeys[i];
+
+      if (err[key] === undefined) {
         continue;
       }
 
-      newError[ nativeErrorKeys[i] ] = err[ nativeErrorKeys[i] ];
+      newError[key] = err[key];
     }
 
     return newError;

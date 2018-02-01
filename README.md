@@ -11,21 +11,9 @@ npm install err@ConjureLabs/err
 ### Usage
 
 ```js
-const ConjureError = require('err');
+const { ConjureError } = require('err');
 
 throw new ConjureError('something happened');
-```
-
-You can pass another error if you want to wrap it.
-
-```js
-const { PermissionsError } = require('err');
-
-try {
-  await checkPermissions();
-} catch(err) {
-  throw new PermissionsError(err);
-}
 ```
 
 ### 'Friendly' Errors
@@ -54,4 +42,19 @@ const { PermissionsError } = require('err');
 const err = new PermissionsError(`User doesn't have access`);
 
 console.log(err.httpStatusCode); // 403
+```
+
+### Wrapping a Native Error
+
+If you want to extend a native error, you can use `.from()`
+
+```js
+const { PermissionsError } = require('err');
+
+try {
+  await checkPermissions();
+} catch(err) {
+  const permErr = PermissionsError.from(err);
+  throw permErr;
+}
 ```
