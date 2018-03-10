@@ -17,7 +17,7 @@ yarn add @conjurelabs/err
 ### Usage
 
 ```js
-const { ConjureError } = require('err');
+const { ConjureError } = require('@conjurelabs/err');
 
 throw new ConjureError('something happened');
 ```
@@ -27,7 +27,7 @@ throw new ConjureError('something happened');
 Internal error dialogs may not be appropriate for end users. Default 'friendly' errors are set on ever Conjure error.
 
 ```js
-const { NotFoundError } = require('err');
+const { NotFoundError } = require('@conjurelabs/err');
 
 const err = new NotFoundError('sensitive message');
 
@@ -43,7 +43,7 @@ This can be used to pass back non-sensitive errors to the client.
 Similar to 'friendly' errors, you may also want to know what http status code an error should associate to.
 
 ```js
-const { PermissionsError } = require('err');
+const { PermissionsError } = require('@conjurelabs/err');
 
 const err = new PermissionsError(`User doesn't have access`);
 
@@ -55,7 +55,7 @@ console.log(err.httpStatusCode); // 403
 If you want to extend a native error, you can use `.from()`
 
 ```js
-const { PermissionsError } = require('err');
+const { PermissionsError } = require('@conjurelabs/err');
 
 try {
   await checkPermissions();
