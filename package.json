@@ -1,16 +1,16 @@
 {
-  "name": "err",
-  "version": "1.0.0",
+  "name": "@conjurelabs/err",
+  "version": "0.0.1",
   "description": "Extending the native error constructor",
   "main": "index.js",
   "scripts": {
     "lint": "bash ./bash/lint.sh",
     "test": "bash ./bash/test.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ConjureLabs/err.git"
-  },
+  "repository": "ConjureLabs/err",
+  "license": "MIT",
+  "bugs": "https://github.com/ConjureLabs/err/issues",
+  "homepage": "https://github.com/ConjureLabs/err#readme",
   "keywords": [
     "Error"
   ],
@@ -19,10 +19,5 @@
     "babel-eslint": "8.0.1",
     "eslint": "4.10.0",
     "jscs": "3.0.7"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ConjureLabs/err/issues"
-  },
-  "homepage": "https://github.com/ConjureLabs/err#readme"
+  }
 }
