@@ -5,7 +5,13 @@ Extending native errors, to give a little more context. "strings are not errors"
 ### Install
 
 ```sh
-npm install --save err@ConjureLabs/err
+npm install --save @conjurelabs/err
+```
+
+or
+
+```sh
+yarn add @conjurelabs/err
 ```
 
 ### Usage
