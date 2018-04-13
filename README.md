@@ -52,7 +52,7 @@ console.log(err.httpStatusCode); // 403
 
 ### Wrapping a Native Error
 
-If you want to extend a native error, you can use `.from()`
+If you want to extend a native error, you can pass in the entire `err` instance.
 
 ```js
 const { PermissionsError } = require('@conjurelabs/err');
@@ -60,8 +60,7 @@ const { PermissionsError } = require('@conjurelabs/err');
 try {
   await checkPermissions();
 } catch(err) {
-  const permErr = PermissionsError.from(err);
-  throw permErr;
+  throw new PermissionsError(err);
 }
 ```
 
@@ -71,4 +70,3 @@ try {
 npm test
 npm run lint
 ```
-
