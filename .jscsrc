@@ -1,5 +1,5 @@
 {
-  "excludeFiles": [ "node_modules/**", "bash/**" ],
+  "excludeFiles": [ "node_modules/**" ],
   "disallowTrailingWhitespace": false,
   "requireLineFeedAtFileEnd": false,
   "disallowEmptyBlocks": false,
