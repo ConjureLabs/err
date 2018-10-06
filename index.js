@@ -5,9 +5,8 @@ class ConjureError extends Error {
   constructor(arg, options) {
     const viaNativeErr = arg instanceof Error
     if (viaNativeErr) {
-      super(...arguments)
-
       const err = arg
+      super(err)
 
       for (let i = 0; i < nativeErrorKeys.length; i++) {
         const key = nativeErrorKeys[i]
@@ -27,10 +26,8 @@ class ConjureError extends Error {
     this.publicMessage = this.publicMessage || this.defaultPublicMessage
     this.message = this.message || this.publicMessage
 
-    if (!viaNativeErr && options) {
-      if (options.public) {
-        this.publicMessage = this.message
-      }
+    if (options && options.public) {
+      this.publicMessage = this.message
     }
   }
 
