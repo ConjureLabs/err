@@ -2,36 +2,39 @@ const nativeErrorKeys = ['address', 'code', 'errno', 'name', 'path', 'port', 'st
 
 // basic error
 class ConjureError extends Error {
-  constructor(...args) {
-    super(...args)
+  constructor(arg, options) {
+    const viaNativeErr = arg instanceof Error
+    if (viaNativeErr) {
+      super(...arguments)
 
-    const errArg = args[0]
+      const err = arg
 
-    // setting default friendly error
-    // this can be overridden on a case-by-case basis
-    this.friendlyError = this.defaultFriendlyError
-
-    // hijack message
-    this.message = errArg ? (
-      typeof errArg === 'string' ? errArg :
-        typeof errArg.message === 'string' ? errArg.message :
-        errArg.toString()
-    ) : this.friendlyError
-
-    if (errArg) {
       for (let i = 0; i < nativeErrorKeys.length; i++) {
         const key = nativeErrorKeys[i]
 
-        if (errArg[key] === undefined) {
+        if (err[key] === undefined) {
           continue
         }
 
-        this[key] = errArg[key]
+        this[key] = err[key]
+      }
+    } else {
+      const message = arg
+      super(message)
+      this.message = typeof message === 'string' ? message : message.toString()
+    }
+
+    this.publicMessage = this.publicMessage || this.defaultPublicMessage
+    this.message = this.message || this.publicMessage
+
+    if (!viaNativeErr && options) {
+      if (options.public) {
+        this.publicMessage = this.message
       }
     }
   }
 
-  get defaultFriendlyError() {
+  get defaultPublicMessage() {
     return 'An error occurred'
   }
 
@@ -47,7 +50,7 @@ class NotFoundError extends ConjureError {
     return 404
   }
 
-  get defaultFriendlyError() {
+  get defaultPublicMessage() {
     return 'A needed resource was not found'
   }
 }
@@ -59,7 +62,7 @@ class PermissionsError extends ConjureError {
     return 403
   }
 
-  get defaultFriendlyError() {
+  get defaultPublicMessage() {
     return 'Invalid permissions'
   }
 }
@@ -67,7 +70,7 @@ module.exports.PermissionsError = PermissionsError
 
 // an error occurred where we don't think it should ever have
 class UnexpectedError extends ConjureError {
-  get defaultFriendlyError() {
+  get defaultPublicMessage() {
     return 'An unexpected error occurred'
   }
 }
@@ -75,7 +78,7 @@ module.exports.UnexpectedError = UnexpectedError
 
 // missing data, wrong keys passed, etc
 class ContentError extends ConjureError {
-  get defaultFriendlyError() {
+  get defaultPublicMessage() {
     return 'Content is missing or invalid'
   }
 }
