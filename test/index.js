@@ -39,6 +39,22 @@ test('public error should match passed string, if public option is true', t => {
   t.true(err.publicMessage.includes('the secret number is 4'))
 })
 
+test('passing a native error without public option should give the default public message', t => {
+  const { ConjureError } = require('../')
+  const rootErr = new Error('this message is not okay for the public')
+  const err = new ConjureError(rootErr)
+  t.true(err.message.includes('this message is not okay for the public'))
+  t.true(!err.publicMessage.includes('this message is not okay for the public'))
+})
+
+test('passing a native error with public option should override public message', t => {
+  const { ConjureError } = require('../')
+  const rootErr = new Error('this message is okay for the public')
+  const err = new ConjureError(rootErr, { public: true })
+  t.true(err.message.includes('this message is okay for the public'))
+  t.true(err.publicMessage.includes('this message is okay for the public'))
+})
+
 test('errors should have an associated http status code', t => {
   const { ConjureError } = require('../')
   const err = new ConjureError('something happened')
