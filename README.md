@@ -1,5 +1,7 @@
 ## Errors
 
+[![CircleCI](https://circleci.com/gh/ConjureLabs/err/tree/master.svg?style=svg)](https://circleci.com/gh/ConjureLabs/err/tree/master)
+
 Extending native errors, to give a little more context.
 
 This is useful for differentiating between server (5xx) and user (4xx) errors. As well as making sure internal vs. public-facing error messages are different.
